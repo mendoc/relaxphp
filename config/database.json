@@ -1,0 +1,6 @@
+{
+    "sgbd"     : "mysql",
+    "user"     : "root",
+    "password" : "",
+    "dbname"   : "foo"
+}

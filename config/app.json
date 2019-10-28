@@ -1,0 +1,176 @@
+{
+    "name": "ALTISPAD",
+    "description": "Application de déclaration de naissance",
+    "version": 1.0,
+    "author": {
+        "name": "Dimitri ONGOUA",
+        "website": "dimitriongoua.com"
+    },
+    "owner": "ALTIS",
+    "theme": "inspinia",
+    "root_url": "http://localhost/relaxphp/",
+    "prod_url": "http://altispad.com/dashboard/",
+    "headings": [
+        {
+            "name": "user",
+            "title": "Utilisateurs",
+            "male": true,
+            "singular": "utilisateur",
+            "plural": "utilisateurs",
+            "table": "user",
+            "dir": "user",
+            "icon": "users",
+            "route": "user-home",
+            "route-add": "user-add",
+            "listing": {
+                "title": "Tous les utilisateurs",
+                "subtitle": "Listing of all users of database.",
+                "columns": {
+                    "id": "#",
+                    "name": "Nom",
+                    "username": "Nom d'utilisateur",
+                    "profile": {
+                        "label": "Profil",
+                        "matching": {
+                            "1": "Administrateur",
+                            "2": "Sage Femme"
+                        }
+                    }
+                },
+                "actions": [
+                    {
+                        "type": "edit",
+                        "text": "Modifier",
+                        "icon": "edit",
+                        "color": "success",
+                        "handler": "edit"
+                    },
+                    {
+                        "type": "delete",
+                        "text": "Supprimer",
+                        "icon": "trash",
+                        "color": "danger",
+                        "handler": "delete"
+                    }
+                ]
+            },
+            "add": {
+                "title": "Ajout d'un utilisateur"
+            },
+            "edit": {
+                "title": "Modification des informations d'un utilisateur"
+            },
+            "views": []
+        },
+        {
+            "name": "certificat",
+            "title": "Certificats",
+            "male": true,
+            "singular": "certificat",
+            "plural": "certificats",
+            "table": "certificat",
+            "dir": "certificat",
+            "icon": "file",
+            "route": "certificat-home",
+            "listing": {
+                "title": "Tous les certificats",
+                "subtitle": "Liste de tous les certificats.",
+                "columns": {
+                    "numero": {
+                        "label": "Numéro",
+                        "case": "upper"
+                    },
+                    "user": "Sage-Femme",
+                    "mere": "Mère",
+                    "date": {
+                        "label": "Date d'accouchement",
+                        "format": "d m Y"
+                    },
+                    "sexe": {
+                        "label": "Sexe",
+                        "matching": {
+                            "1": "Masculin",
+                            "2": "Feminin"
+                        }
+                    }
+                },
+                "actions": [
+                    {
+                        "type": "print",
+                        "text": "Imprimer",
+                        "icon": "print",
+                        "color": "success",
+                        "handler": "printing",
+                        "target": "_blank"
+                    },
+                    {
+                        "type": "create",
+                        "text": "Nouvelle déclaration",
+                        "icon": "plus",
+                        "color": "info",
+                        "handler": "declaration"
+                    },
+                    {
+                        "type": "delete",
+                        "text": "Supprimer",
+                        "icon": "trash",
+                        "color": "danger",
+                        "handler": "delete"
+                    }
+                ]
+            },
+            "add": {
+                "title": "Ajout d'un certificat d'accouchement"
+            },
+            "views": []
+        },
+        {
+            "name": "declaration",
+            "title": "Déclarations",
+            "male": false,
+            "singular": "déclaration",
+            "plural": "déclarations",
+            "table": "declaration",
+            "dir": "declaration",
+            "icon": "book",
+            "route": "declaration-home",
+            "listing": {
+                "title": "Toutes les déclarations",
+                "subtitle": "Listing of all users of database.",
+                "columns": {
+                    "decl_numero": {
+                        "label": "#",
+                        "case": "upper"
+                    },
+                    "enf_nom": "Enfant",
+                    "pere_nom_compl": "Père",
+                    "mere_nom_compl": "Mère",
+                    "created_at": {
+                        "label": "Déclaré le",
+                        "format": "d M Y"
+                    }
+                },
+                "actions": [
+                    {
+                        "type": "view",
+                        "text": "Consulter",
+                        "icon": "eye",
+                        "color": "success",
+                        "handler": "view"
+                    },
+                    {
+                        "type": "delete",
+                        "text": "Supprimer",
+                        "icon": "trash",
+                        "color": "danger",
+                        "handler": "delete"
+                    }
+                ]
+            },
+            "add": {
+                "title": "Ajout d'une déclaration"
+            },
+            "views": []
+        }
+    ]
+}
