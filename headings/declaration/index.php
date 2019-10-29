@@ -27,7 +27,7 @@
 </div>
 <div class="wrapper wrapper-content">
     <?php if (count($data) > 0) : ?>
-        <div class="col-lg-12">
+        <div class="col-lg-12 animated fadeInRight">
             <div class="ibox">
                 <div class="ibox-title d-print-none">
                     <h5><?= heading('listing')['title'] ?> </h5>
@@ -59,9 +59,28 @@
                                 <?php endforeach; ?>
                                 <td class="d-print-none">
                                     <?php foreach (heading('listing')['actions'] as $action) : ?>
+                                        <?php if (isset($action['group']) and $action['group']) continue; ?>
                                         <a href="<?= route($action['handler'], ['id' => $item['id']]) ?>" class="btn btn-<?= $action['color'] ?> btn-xs btn-fill"><i
                                                 class="fa fa-<?= $action['icon'] ?>"></i> <?= $action['text'] ?></a>
                                     <?php endforeach; ?>
+                                    <?php if (has_actions_grouped()) : ?>
+                                        <div class="btn-group">
+                                            <button data-toggle="dropdown"
+                                                    class="btn btn-primary btn-xs dropdown-toggle">
+                                                <i class="fa fa-cogs"></i> Actions
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <?php foreach (heading('listing')['actions'] as $action) : ?>
+                                                    <?php if (isset($action['group']) and $action['group']) : ?>
+                                                        <li><a class="dropdown-item text-<?= $action['color'] ?>"
+                                                               href="<?= route($action['handler'], ['id' => $item['id']]) ?>" <?= (isset($action['target'])) ? 'target="' . $action['target'] . '"' : '' ?>><i
+                                                                        class="fa fa-<?= $action['icon'] ?>"></i> <?= $action['text'] ?>
+                                                            </a></li>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

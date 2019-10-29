@@ -34,7 +34,7 @@
                         <input type="hidden" name="decl_numero" value="<?= (isset($data['numero'])) ? $data['numero'] : '' ?>">
                         <div class="form-group text-center m-b-lg">
                             <label class="font-bold">Numéro de certificat</label>
-                            <input type="text" disabled value="<?= (isset($data['numero'])) ? $data['numero'] : "" ?>" class="form-control text-center offset-lg-4 col-lg-4">
+                            <input type="text" value="<?= (isset($data['numero'])) ? $data['numero'] : "" ?>" class="form-control text-center offset-lg-4 col-lg-4">
                         </div>
                         <h3 class="m-t-none m-b">1 - Identification de l'enfant</h3>
                         <div class="form-group row">
@@ -50,11 +50,11 @@
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Date de naissance</label>
                             <div class="col-lg-4">
-                                <input type="date" disabled value="<?= (isset($data['date'])) ? $data['date'] : '' ?>" name="enf_date_naiss" class="form-control" required>
+                                <input type="date" value="<?= (isset($data['date'])) ? $data['date'] : '' ?>" name="enf_date_naiss" class="form-control" required>
                             </div>
                             <label class="col-lg-2 col-form-label">Heure de naissance</label>
                             <div class="col-lg-4">
-                                <input type="text" disabled value="<?= (isset($data['heure'])) ? $data['heure'] : '' ?>" name="enf_heure_naiss" placeholder="Heure de naissance" class="form-control" required>
+                                <input type="text" value="<?= (isset($data['heure'])) ? $data['heure'] : '' ?>" name="enf_heure_naiss" placeholder="Heure de naissance" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -64,9 +64,9 @@
                             </div>
                             <label class="col-sm-2 col-form-label">Sexe</label>
                             <div class="col-sm-4">
-                                <select class="form-control m-b" name="enf_sexe" disabled required>
-                                    <option value="<?= (isset($data['sexe'])) ? (($data['sexe'] == '1') ? 'selected' : '') : '' ?>">Masculin</option>
-                                    <option value="<?= (isset($data['sexe'])) ? (($data['sexe'] == '2') ? 'selected' : '') : '' ?>">Feminin</option>
+                                <select class="form-control m-b" name="enf_sexe" required>
+                                    <option value="1" <?= (isset($data['sexe'])) ? (($data['sexe'] == '1') ? 'selected' : '') : '' ?>>Masculin</option>
+                                    <option value="2" <?= (isset($data['sexe'])) ? (($data['sexe'] == '2') ? 'selected' : '') : '' ?>>Feminin</option>
                                 </select>
                             </div>
                         </div>
@@ -142,11 +142,11 @@
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Nom complet du mère</label>
                             <div class="col-lg-4">
-                                <input type="text" disabled name="mere_nom_compl" placeholder="Entrez le nom du mère" value="<?= (isset($data['mere'])) ? $data['mere'] : '' ?>" class="form-control" required>
+                                <input type="text" name="mere_nom_compl" placeholder="Entrez le nom de la mère" value="<?= (isset($data['mere'])) ? $data['mere'] : '' ?>" class="form-control" required>
                             </div>
                             <label class="col-lg-2 col-form-label">Domicile</label>
                             <div class="col-lg-4">
-                                <input type="text" name="mere_domicile" placeholder="Entrez le domicile du mère" class="form-control" required>
+                                <input type="text" name="mere_domicile" placeholder="Entrez le domicile de la mère" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">

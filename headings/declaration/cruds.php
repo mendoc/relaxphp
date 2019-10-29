@@ -59,8 +59,6 @@ function save()
 
         $new_decl = e(heading('table'), $params);
 
-
-
         if ($new_decl) {
             redirect('declaration-home');
         } else

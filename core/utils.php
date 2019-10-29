@@ -206,3 +206,16 @@ function theme_url()
     $app = get_config();
     return root_url() . 'themes' . '/' . $app['theme'] . '/';
 }
+
+function has_actions_grouped(){
+
+    foreach (heading('listing')['actions'] as $action){
+        if (isset($action['group']) and $action['group']) return true;
+    }
+    return false;
+}
+
+function change_format($date)
+{
+    return date('d M Y', strtotime($date));
+}

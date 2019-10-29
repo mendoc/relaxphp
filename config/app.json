@@ -96,26 +96,44 @@
                 },
                 "actions": [
                     {
+                        "type": "view",
+                        "text": "Consulter",
+                        "icon": "eye",
+                        "color": "success",
+                        "handler": "view"
+                    },
+                    {
+                        "type": "edit",
+                        "text": "Modifier",
+                        "icon": "edit",
+                        "color": "success",
+                        "handler": "edit",
+                        "group": true
+                    },
+                    {
                         "type": "print",
                         "text": "Imprimer",
                         "icon": "print",
                         "color": "success",
                         "handler": "printing",
-                        "target": "_blank"
+                        "target": "_blank",
+                        "group": true
                     },
                     {
                         "type": "create",
                         "text": "Nouvelle déclaration",
                         "icon": "plus",
-                        "color": "info",
-                        "handler": "declaration"
+                        "color": "success",
+                        "handler": "declaration",
+                        "group": true
                     },
                     {
                         "type": "delete",
                         "text": "Supprimer",
                         "icon": "trash",
                         "color": "danger",
-                        "handler": "delete"
+                        "handler": "delete",
+                        "group": true
                     }
                 ]
             },
@@ -159,11 +177,20 @@
                         "handler": "view"
                     },
                     {
+                        "type": "edit",
+                        "text": "Modifier",
+                        "icon": "edit",
+                        "color": "success",
+                        "handler": "edit",
+                        "group": true
+                    },
+                    {
                         "type": "delete",
                         "text": "Supprimer",
                         "icon": "trash",
                         "color": "danger",
-                        "handler": "delete"
+                        "handler": "delete",
+                        "group": true
                     }
                 ]
             },
