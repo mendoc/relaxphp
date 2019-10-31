@@ -56,6 +56,9 @@ function verify()
             case 2:
                 $_SESSION['p'] = 'Sage Femme';
                 break;
+            case 3:
+                $_SESSION['p'] = 'Major';
+                break;
         }
         $_SESSION['u'] = $user['username'];
         $_SESSION['n'] = $user['name'];
@@ -94,6 +97,9 @@ function save()
                             break;
                         case 2:
                             $_SESSION['p'] = 'Sage Femme';
+                            break;
+                        case 3:
+                            $_SESSION['p'] = 'Major';
                             break;
                     }
                     //var_dump($user); dump($_SESSION);

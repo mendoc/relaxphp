@@ -47,6 +47,7 @@
                                 <select class="form-control m-b" name="profile">
                                     <option value="1">Administrateur</option>
                                     <option value="2" selected>Sage Femme</option>
+                                    <option value="3">Major</option>
                                 </select>
                             </div>
                         </div>

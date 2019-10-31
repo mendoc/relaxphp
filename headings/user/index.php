@@ -52,6 +52,7 @@
                                 <td class="d-print-none">
                                     <?php foreach (heading('listing')['actions'] as $action) : ?>
                                     <?php if ($action['type'] == 'delete' and session('u') == $item['username']) continue; ?>
+                                    <?php if (!has_right($action)) continue; ?>
                                         <a href="<?= route($action['handler'], ['id' => $item['id']]) ?>" class="btn btn-<?= $action['color'] ?> btn-xs btn-fill"><i
                                                     class="fa fa-<?= $action['icon'] ?>"></i> <?= $action['text'] ?></a>
                                     <?php endforeach; ?>

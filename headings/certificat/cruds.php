@@ -146,6 +146,9 @@ function save()
                         case 2:
                             $_SESSION['p'] = 'Sage Femme';
                             break;
+                        case 3:
+                            $_SESSION['p'] = 'Major';
+                            break;
                     }
                     //var_dump($user); dump($_SESSION);
                 }

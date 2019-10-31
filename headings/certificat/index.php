@@ -60,6 +60,7 @@
                                 <?php endforeach; ?>
                                 <td class="d-print-none">
                                     <?php foreach (heading('listing')['actions'] as $action) : ?>
+                                        <?php if (!has_right($action)) continue; ?>
                                         <?php if (isset($action['group']) and $action['group']) continue; ?>
                                         <a href="<?= route($action['handler'], ['id' => $item['id']]) ?>" <?= (isset($action['target'])) ? 'target="' . $action['target'] . '"' : '' ?>
                                            class="btn btn-<?= $action['color'] ?> btn-xs btn-fill"><i
@@ -73,11 +74,14 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <?php foreach (heading('listing')['actions'] as $action) : ?>
+                                                    <?php if (!has_right($action)) continue; ?>
                                                     <?php if (isset($action['group']) and $action['group']) : ?>
-                                                        <li><a class="dropdown-item text-<?= $action['color'] ?>"
+                                                        <li>
+                                                            <a class="dropdown-item text-<?= $action['color'] ?>"
                                                                href="<?= route($action['handler'], ['id' => $item['id']]) ?>" <?= (isset($action['target'])) ? 'target="' . $action['target'] . '"' : '' ?>><i
                                                                         class="fa fa-<?= $action['icon'] ?>"></i> <?= $action['text'] ?>
-                                                            </a></li>
+                                                            </a>
+                                                        </li>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </ul>

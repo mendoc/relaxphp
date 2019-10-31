@@ -60,7 +60,7 @@ function get_path()
 
 function load_view($viewname, $data = array())
 {
-    $app       = get_config();
+    $app = get_config();
     $view_path = './headings/' . heading('name') . '/' . $viewname . '.php';
 
     require_once './themes/' . get('theme') . '/head.php';
@@ -85,7 +85,7 @@ function show_404()
 
 function requiere_post()
 {
-    if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         show_404();
     }
 }
@@ -154,17 +154,17 @@ function get_data()
     $r = s(heading('table'));
     if ($r) $data = $r;
 
-    return array_map(function ($item){
+    return array_map(function ($item) {
         $columns = heading('listing')['columns'];
         foreach ($columns as $label => $column) {
-            if (is_array($column)){
-                if (isset($column['matching'])){
+            if (is_array($column)) {
+                if (isset($column['matching'])) {
                     if (isset($column['matching'][$item[$label]])) $item[$label] = $column['matching'][$item[$label]];
                 }
-                if (isset($column['format'])){
-                    $item[$label] = date('d M Y',strtotime($item[$label]));
+                if (isset($column['format'])) {
+                    $item[$label] = date('d M Y', strtotime($item[$label]));
                 }
-                if (isset($column['case'])){
+                if (isset($column['case'])) {
                     $item[$label] = set_case($item[$label], $column['case']);
                 }
 
@@ -190,13 +190,13 @@ function session($param)
 
 function ends_with($text, $needle)
 {
-    return strpos($text, $needle, strlen($text)-1);
+    return strpos($text, $needle, strlen($text) - 1);
 }
 
 function root_url()
 {
     $app = get_config();
-    $root_url = (strpos($app['prod_url'], $_SERVER['HTTP_HOST'])) ? $app['prod_url'] : $app['root_url'];
+    $root_url = is_prod() ? $app['prod_url'] : $app['root_url'];
     if (!ends_with($root_url, '/')) $root_url .= '/';
     return $root_url;
 }
@@ -207,15 +207,35 @@ function theme_url()
     return root_url() . 'themes' . '/' . $app['theme'] . '/';
 }
 
-function has_actions_grouped(){
-
-    foreach (heading('listing')['actions'] as $action){
-        if (isset($action['group']) and $action['group']) return true;
+function has_actions_grouped()
+{
+    foreach (heading('listing')['actions'] as $action) {
+        if (isset($action['group']) and $action['group'] and has_right($action)) return true;
     }
     return false;
+}
+
+function get_actions($view)
+{
+    $actions = array();
+    foreach (heading($view)['actions'] as $action) {
+        $actions[$action['type']] = $action;
+    }
+    return $actions;
+}
+
+function has_right($item)
+{
+    return !(isset($item['deny']) and in_array(session($item['deny']['session']), $item['deny']['values']));
 }
 
 function change_format($date)
 {
     return date('d M Y', strtotime($date));
+}
+
+function is_prod()
+{
+    $app = get_config();
+    return strpos($app['prod_url'], $_SERVER['HTTP_HOST']);
 }

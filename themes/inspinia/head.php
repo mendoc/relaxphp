@@ -86,6 +86,11 @@
                             <i class="fa fa-sign-out"></i> Déconnexion
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= (is_prod() ? $app['root_url'] : $app['prod_url']) ?>">
+                            <i class="fa fa-arrow-<?= is_prod() ? 'left' : 'right' ?>"></i>
+                        </a>
+                    </li>
                 </ul>
 
             </nav>

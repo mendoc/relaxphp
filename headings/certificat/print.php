@@ -42,7 +42,7 @@
                 <div class="space-top" style="font-size: 1.5em">
                     <p>Je soussignée, Sage-femme <b><?= $data['user'] ?></b>
                     certifie avoir fait accoucher, Mlle <b><?= $data['mere'] ?></b>
-                    Le <b><?= change_format($data['date']) ?></b> à <b><?= $data['heure'] ?></b>
+                    le <b><?= change_format($data['date']) ?></b> à <b><?= $data['heure'] ?></b>
                     d'un enfant <span class="text-lowercase"><b><?= $data['nature'] ?></b></span> de sexe
                         <b><?= $data['sexe'] ?></b>.</p>
                 <p class="space-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En foi de quoi, nous lui délivrons le présent certificat pour servir et valoir ce que de droit. /.</p>
@@ -55,7 +55,6 @@
         </div>
 
     </article>
-
 </section>
 
 </body>

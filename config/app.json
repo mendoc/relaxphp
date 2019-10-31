@@ -1,9 +1,9 @@
 {
-    "name": "ALTISPAD",
-    "description": "Application de déclaration de naissance",
+    "name": "AltisPADNaissance",
+    "description": "Déclaration de naissance par le digital",
     "version": 1.0,
     "author": {
-        "name": "Dimitri ONGOUA",
+        "name": "ASSED",
         "website": "dimitriongoua.com"
     },
     "owner": "ALTIS",
@@ -33,7 +33,8 @@
                         "label": "Profil",
                         "matching": {
                             "1": "Administrateur",
-                            "2": "Sage Femme"
+                            "2": "Sage Femme",
+                            "3": "Major"
                         }
                     }
                 },
@@ -43,7 +44,11 @@
                         "text": "Modifier",
                         "icon": "edit",
                         "color": "success",
-                        "handler": "edit"
+                        "handler": "edit",
+                        "deny": {
+                            "session": "p",
+                            "values": ["Major"]
+                        }
                     },
                     {
                         "type": "delete",
@@ -64,7 +69,7 @@
         },
         {
             "name": "certificat",
-            "title": "Certificats",
+            "title": "Certificats/Attestations",
             "male": true,
             "singular": "certificat",
             "plural": "certificats",
@@ -117,7 +122,11 @@
                         "color": "success",
                         "handler": "printing",
                         "target": "_blank",
-                        "group": true
+                        "group": true,
+                        "deny": {
+                            "session": "p",
+                            "values": ["Sage Femme"]
+                        }
                     },
                     {
                         "type": "create",
@@ -139,6 +148,22 @@
             },
             "add": {
                 "title": "Ajout d'un certificat d'accouchement"
+            },
+            "view": {
+                "title": "Détails du certificat",
+                "actions": [
+                    {
+                        "type": "print",
+                        "text": "Imprimer le certificat",
+                        "icon": "print",
+                        "color": "success",
+                        "handler": "printing",
+                        "deny": {
+                            "session": "p",
+                            "values": ["Sage Femme"]
+                        }
+                    }
+                ]
             },
             "views": []
         },

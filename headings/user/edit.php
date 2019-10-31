@@ -44,6 +44,7 @@
                                 <select class="form-control m-b" name="profile">
                                     <option value="1" <?= ($data['profile'] == 1) ? 'selected' : ''; ?>>Administrateur</option>
                                     <option value="2" <?= ($data['profile'] == 2) ? 'selected' : ''; ?>>Sage Femme</option>
+                                    <option value="3" <?= ($data['profile'] == 3) ? 'selected' : ''; ?>>Major</option>
                                 </select>
                             </div>
                         </div>

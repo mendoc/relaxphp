@@ -25,7 +25,7 @@
                 <h2 class="font-bold">Bienvenue sur <?= $app['name']; ?></h2>
 
                 <p>
-                    <strong>ALTISPAD</strong> est une plateforme permettant de faire des déclarations de naissance.
+                    <strong><?= $app['name']; ?></strong> est une plateforme de <?= $app['description']; ?>.
                 </p>
                 <p>
                     Il offre également une visibilité sur tous le traffic lié aux utilisateurs, aux naissances, etc. Ce
