@@ -28,8 +28,9 @@
                     <strong><?= $app['name']; ?></strong> est une plateforme de <?= $app['description']; ?>.
                 </p>
                 <p>
-                    Il offre également une visibilité sur tous le traffic lié aux utilisateurs, aux naissances, etc. Ce
-                    qui fait de lui un outil statistique et décisionnel.
+                    Relax PHP est un ensemble d'outils qui vous assiste dans la création de votre application web.
+                    Il vous fait gagner du temps dans des tâches routinières et basiques afin de vous focaliser
+                    sur les processus métiers.
                 </p>
 
             </div>
@@ -50,7 +51,7 @@
         <hr/>
         <div class="row">
             <div class="col-md-6">
-                Copyright ALTIS
+                Copyright <?= $app['owner']; ?>
             </div>
             <div class="col-md-6 text-right">
                <small>© 2019</small>
