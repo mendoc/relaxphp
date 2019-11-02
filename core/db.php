@@ -10,7 +10,7 @@ class BDD
 {
     private $config = array(
         'host' => 'localhost',
-        'base' => 'pad',
+        'base' => 'hellorelax',
         'user' => 'root',
         'pass' => ''
     );
