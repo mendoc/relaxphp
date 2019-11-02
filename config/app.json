@@ -1,0 +1,65 @@
+{
+    "name": "Hello Relax",
+    "description": "Application web faite avec Relax PHP",
+    "version": 1.0,
+    "author": {
+        "name": "Dimitri ONGOUA",
+        "website": "dimitriongoua.com"
+    },
+    "owner": "Relax PHP",
+    "theme": "inspinia",
+    "root_url": "http://localhost/hellorelax/",
+    "prod_url": "http://example.com/",
+    "headings": [
+        {
+            "name": "user",
+            "title": "Utilisateurs",
+            "male": true,
+            "singular": "utilisateur",
+            "plural": "utilisateurs",
+            "table": "user",
+            "dir": "user",
+            "icon": "users",
+            "route": "user-home",
+            "route-add": "user-add",
+            "listing": {
+                "title": "Tous les utilisateurs",
+                "subtitle": "Liste de tous les utilisateurs.",
+                "columns": {
+                    "id": "#",
+                    "name": "Nom",
+                    "username": "Nom d'utilisateur",
+                    "sexe": {
+                        "label": "Sexe",
+                        "matching": {
+                            "1": "Homme",
+                            "2": "Femme"
+                        }
+                    }
+                },
+                "actions": [
+                    {
+                        "type": "edit",
+                        "text": "Modifier",
+                        "icon": "edit",
+                        "color": "success",
+                        "handler": "edit"
+                    },
+                    {
+                        "type": "delete",
+                        "text": "Supprimer",
+                        "icon": "trash",
+                        "color": "danger",
+                        "handler": "delete"
+                    }
+                ]
+            },
+            "add": {
+                "title": "Ajout d'un utilisateur"
+            },
+            "edit": {
+                "title": "Modification des informations d'un utilisateur"
+            }
+        }
+    ]
+}

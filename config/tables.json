@@ -1,0 +1,40 @@
+[
+    {
+        "name": "users",
+        "timestamp": true,
+        "trash": false,
+        "fields": [
+            {
+                "name": "profile",
+                "type": "integer",
+                "relation": "profile"
+            },
+            {
+                "name": "pass",
+                "type": "string"
+            },
+            {
+                "name": "username",
+                "type": "string",
+                "length": 16
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "length": 50
+            },
+            {
+                "name": "phone",
+                "type": "string",
+                "length": 20,
+                "null": true
+            },
+            {
+                "name": "sexe",
+                "type": "integer",
+                "length": 1,
+                "default": 1
+            }
+        ]
+    }
+]
