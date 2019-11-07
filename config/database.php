@@ -8,10 +8,22 @@
 
 class DBINFOS
 {
-    public static $config = [
+    private static $config_local = [
         'host' => '',
         'base' => '',
         'user' => '',
         'pass' => ''
     ];
+
+    private static $config_prod = [
+        'host' => '',
+        'base' => '',
+        'user' => '',
+        'pass' => ''
+    ];
+
+    public static function get_config()
+    {
+        return (is_prod() ? self::$config_prod : self::$config_local);
+    }
 }

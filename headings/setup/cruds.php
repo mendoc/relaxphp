@@ -8,7 +8,7 @@
 
 function home()
 {
-    $data['db'] = DBINFOS::$config;
+    $data['db'] = DBINFOS::get_config();
     $data['tables'] = array();
 
     $res = x('SHOW TABLES;');

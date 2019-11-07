@@ -22,7 +22,7 @@ class BDD
     public function __construct()
     {
         if (class_exists('DBINFOS')) {
-            $this->config = DBINFOS::$config;
+            $this->config = DBINFOS::get_config();
         }
         try {
             $this->bdd = new PDO('mysql:host=' . $this->config['host'] . ';dbname=' . $this->config['base'], $this->config['user'], $this->config['pass'], array(PDO::ATTR_PERSISTENT => true));
