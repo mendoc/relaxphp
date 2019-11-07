@@ -1,13 +1,12 @@
 [
     {
-        "name": "users",
+        "name": "user",
         "timestamp": true,
         "trash": false,
         "fields": [
             {
                 "name": "profile",
-                "type": "integer",
-                "relation": "profile"
+                "type": "integer"
             },
             {
                 "name": "pass",

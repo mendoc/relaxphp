@@ -60,6 +60,11 @@
             "edit": {
                 "title": "Modification des informations d'un utilisateur"
             }
+        },
+        {
+            "name": "setup",
+            "dir": "setup",
+            "show": false
         }
     ]
 }

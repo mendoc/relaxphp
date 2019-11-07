@@ -9,9 +9,9 @@
 class DBINFOS
 {
     public static $config = [
-        'host' => 'localhost',
-        'base' => 'hellorelax',
-        'user' => 'root',
+        'host' => '',
+        'base' => '',
+        'user' => '',
         'pass' => ''
     ];
 }

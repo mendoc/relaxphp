@@ -61,7 +61,27 @@ function get_path()
 function load_view($viewname, $data = array())
 {
     $app = get_config();
-    $view_path = './headings/' . heading('name') . '/' . $viewname . '.php';
+    $view_path = './headings/' . heading('dir') . '/' . $viewname . '.php';
+
+    require_once './themes/' . $app['theme'] . '/head.php';
+
+    if (file_exists($view_path)) require_once $view_path;
+    else require_once './themes/' . $app['theme'] . '/404_view.php';
+
+    require_once './themes/' . $app['theme'] . '/footer.php';
+}
+
+function generate_view($viewname)
+{
+    $data['fields'] = get_fields(heading('table'));
+
+    if ($data['fields'] == false) {
+        $data['fields'] = array();
+        flash(l('return'), 'error');
+    }
+
+    $app = get_config();
+    $view_path = './headings/sample/' . $viewname . '.php';
 
     require_once './themes/' . $app['theme'] . '/head.php';
 
@@ -125,6 +145,7 @@ function route($handler, $params = array(), $heading = '')
 
 function redirect($route, $params = array())
 {
+    if (strpos($route, '-') == FALSE) $route = heading('name') . '-' . $route;
     $qs = '';
     foreach ($params as $key => $value) $qs .= '&' . $key . '=' . $value;
     $link = root_url() . '?' . $route . $qs;
@@ -132,7 +153,7 @@ function redirect($route, $params = array())
     exit();
 }
 
-function dump($var)
+function dump(...$var)
 {
     var_dump($var);
     die();
@@ -166,7 +187,20 @@ function get_data()
         foreach ($columns as $label => $column) {
             if (is_array($column)) {
                 if (isset($column['matching'])) {
-                    if (isset($column['matching'][$item[$label]])) $item[$label] = $column['matching'][$item[$label]];
+                    if (isset($item[$label])) {
+                        if (isset($column['matching'][$item[$label]])) $item[$label] = $column['matching'][$item[$label]];
+                    }
+                }
+                if (isset($column['relation'])) {
+                    if (isset($column['relation']['table']) and isset($column['relation']['field'])) {
+                        $table = $column['relation']['table'];
+                        $field = $column['relation']['field'];
+                        if (isset($item[$label])) {
+                            $one = one($table, ['id' => $item[$label]]);
+                            if ($one and isset($one[$field]))
+                                $item[$label] = $one[$field];
+                        }
+                    }
                 }
                 if (isset($column['format'])) {
                     $item[$label] = date('d M Y', strtotime($item[$label]));
@@ -244,7 +278,7 @@ function change_format($date)
 function is_prod()
 {
     $app = get_config();
-    return strpos($app['prod_url'], $_SERVER['HTTP_HOST'] === true);
+    return strpos($app['prod_url'], $_SERVER['HTTP_HOST']);
 }
 
 function flash($message, $type = 'success')
@@ -260,4 +294,63 @@ function get_flash()
     $flash = (isset($_SESSION['flash'])) ? $_SESSION['flash'] : null;
     unset($_SESSION['flash']);
     return $flash;
+}
+
+function apostrophe($str)
+{
+    $voyelles = array("a", "e", "i", "o", "u", "h");
+    $str = strtolower($str);
+    $str = substr($str, 0, 1);
+    return in_array($str, $voyelles);
+}
+
+function get_fields($table)
+{
+    $fields = array();
+
+    $res = x("DESCRIBE `{$table}`;");
+
+    if (!$res) return false;
+
+    $desc = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($desc as $detail) {
+
+        $field = [];
+
+        if (strtolower($detail['Field']) == 'id') continue;
+
+        $name = $detail['Field'];
+        $field['name'] = $name;
+
+        if ($detail['Null'] == 'NO') $field['required'] = true;
+
+        $add_config = heading('add');
+        if (isset($add_config['fields'][$name])) {
+            $field_config = $add_config['fields'][$name];
+
+            if (isset($field_config['type'])) {
+                if (!isset($field_config['options'])) {
+                    $field_config['options'] = array("0" => "-- Aucune valeur --");
+                } else {
+                    if (isset($field_config['options']['table']) and isset($field_config['options']['field'])) {
+                        $table = $field_config['options']['table'];
+                        $value = $field_config['options']['field'];
+                        $res = s($table);
+                        if ($res) {
+                            $field_config['options'] = [];
+                            foreach ($res as $item) {
+                                $field_config['options'][$item['id']] = $item[$value];
+                            }
+                        }
+                    }
+                }
+            }
+            $field = array_merge($field, $field_config);
+        }
+
+        $fields[] = $field;
+    }
+
+    return $fields;
 }
